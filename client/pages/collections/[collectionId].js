@@ -14,7 +14,7 @@ import NFTCard from '../../components/NFTCard'
 const style = {
   bannerImageContainer: `h-[20vh] w-screen overflow-hidden flex justify-center items-center`,
   bannerImage: `w-full object-cover`,
-  infoContainer: `w-screen px-4`,
+  infoContainer: `w-screen h-screen px-4 bg-[#2f3640]`,
   midRow: `w-full flex justify-center text-white`,
   endRow: `w-full flex justify-end text-white`,
   profileImg: `w-40 h-40 object-cover rounded-full border-2 border-[#202225] mt-[-4rem]`,
@@ -51,14 +51,17 @@ const Collection = () => {
       provider.getSigner(),
       'https://eth-rinkeby.alchemyapi.io/v2/7gh6tiPwjOeiC6anaB_OoIOJ0kYjDmJS'
     )
-    return sdk.getNFTModule(collectionId)
+    // return sdk.getNFTModule(collectionId)
+    console.log(sdk.getNFTModule(collectionId))
   }, [provider])
 
   useEffect(() => {
-    if (!nftModule) return
-
+    console.log('asdf333')
+    // if (!nftModule) return
+    console.log('asdf')
     ;(async () => {
       const nfts = await nftModule.getAll()
+      console.log(nfts, 'harry')
       setNfts(nfts)
     })
   }, [nftModule])
@@ -107,7 +110,7 @@ const Collection = () => {
   }, [marketPlaceModule])
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden h-screen">
       <Header />
       <div className={style.bannerImageContainer}>
         <img
@@ -194,7 +197,7 @@ const Collection = () => {
                   alt="eth"
                   className={style.ethLogo}
                 />
-                {collection?.volumeTraded}.5K
+                {collection?.volumeTraded}.2K
               </div>
               <div className={style.statName}>volume traded</div>
             </div>
