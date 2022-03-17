@@ -51,14 +51,11 @@ const Collection = () => {
       provider.getSigner(),
       'https://eth-rinkeby.alchemyapi.io/v2/7gh6tiPwjOeiC6anaB_OoIOJ0kYjDmJS'
     )
-    // return sdk.getNFTModule(collectionId)
-    console.log(sdk.getNFTModule(collectionId))
+    return sdk.getNFTModule(collectionId)
   }, [provider])
 
   useEffect(() => {
-    console.log('asdf333')
-    // if (!nftModule) return
-    console.log('asdf')
+    if (!nftModule) return
     ;(async () => {
       const nfts = await nftModule.getAll()
       console.log(nfts, 'harry')
