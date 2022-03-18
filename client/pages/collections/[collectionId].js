@@ -1,24 +1,23 @@
 import { useWeb3 } from '@3rdweb/hooks'
 import { ThirdwebSDK } from '@3rdweb/sdk'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useMemo, useState } from 'react'
-import { client } from '../../lib/sanityClient'
-import Header from '../../components/Header'
-import { CgWebsite } from 'react-icons/cg'
 import { AiOutlineInstagram, AiOutlineTwitter } from 'react-icons/ai'
+import { CgWebsite } from 'react-icons/cg'
 import { HiDotsVertical } from 'react-icons/hi'
+import Header from '../../components/Header'
 import NFTCard from '../../components/NFTCard'
+import { client } from '../../lib/sanityClient'
 
 
 const style = {
   bannerImageContainer: `h-[20vh] w-screen overflow-hidden flex justify-center items-center`,
   bannerImage: `w-full object-cover`,
-  infoContainer: `w-screen h-screen px-4 bg-[#2f3640]`,
+  infoContainer: `w-screen px-4 bg-[#2f3640]`,
   midRow: `w-full flex justify-center text-white`,
   endRow: `w-full flex justify-end text-white`,
   profileImg: `w-40 h-40 object-cover rounded-full border-2 border-[#202225] mt-[-4rem]`,
-  socialIconsContainer: `flex text-3xl mb-[-2rem]`,
+  socialIconsContainer: `flex text-2xl mb-[-2rem]`,
   socialIconsWrapper: `w-44`,
   socialIconsContent: `flex container justify-between text-[1.4rem] border-2 rounded-lg px-2`,
   socialIcon: `my-2`,
@@ -41,9 +40,6 @@ const Collection = () => {
   const [collection, setCollection] = useState({})
   const [listings, setListings] = useState([])
 
-
-  // 7gh6tiPwjOeiC6anaB_OoIOJ0kYjDmJS
-
   const nftModule = useMemo(() => {
     if (!provider) return
 
@@ -57,10 +53,10 @@ const Collection = () => {
   useEffect(() => {
     if (!nftModule) return
     ;(async () => {
+      console.log('meeeee')
       const nfts = await nftModule.getAll()
-      console.log(nfts, 'harry')
       setNfts(nfts)
-    })
+    })()
   }, [nftModule])
 
   const marketPlaceModule = useMemo(() => {
@@ -90,8 +86,6 @@ const Collection = () => {
 
     const collectionData = await sanityClient.fetch(query)
 
-    console.log(collectionData)
-
     await setCollection(collectionData[0])
   }
 
@@ -107,7 +101,7 @@ const Collection = () => {
   }, [marketPlaceModule])
 
   return (
-    <div className="overflow-hidden h-screen">
+    <div className="overflow-hidden">
       <Header />
       <div className={style.bannerImageContainer}>
         <img
