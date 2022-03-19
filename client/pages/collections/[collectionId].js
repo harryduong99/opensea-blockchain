@@ -53,7 +53,6 @@ const Collection = () => {
   useEffect(() => {
     if (!nftModule) return
     ;(async () => {
-      console.log('meeeee')
       const nfts = await nftModule.getAll()
       setNfts(nfts)
     })()
